@@ -1,0 +1,39 @@
+{
+    "PIZZERIA":{
+        "TIPO_PIZZA":[
+            {
+                "TAMAÑO": "Pequeña",
+                "PRECIO":"5"
+            },
+            {
+                "TAMAÑO": "Mediana",
+                "PRECIO":"10"
+            },
+            {
+                "TAMAÑO": "Grande",
+                "PRECIO":"15"
+            }
+
+        ],
+        "INGREDIENTES":[
+            {
+                "NOMBRE": "Bacon",
+                "PRECIO":"1"
+            },
+            {
+                "NOMBRE": "Cebolla",
+                "PRECIO":"1"
+            },
+            {
+                "NOMBRE": "Champiñones",
+                "PRECIO":"1"
+            },
+            {
+                "NOMBRE": "Peperoni",
+                "PRECIO":"1"
+            }
+
+        ]
+
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./validacion.js"></script> 
+	<title>Etiquetas</title>
+</head>
+
+<div id="after_submit"></div>
+
+<form id="formulario_pizza" action="#" method="get">
+  <div class="row">
+    <label class="required" for="name"><b>Nombre:</b> </label><br />
+    <input id="nombre" class="input" name="name" type="text" value="" size="30" placeholder="Escribe aquí tu nombre"/><br />
+  </div>
+  <br>
+  <div class="row">
+    <label class="required" for="direccion"><b>Dirección:</b></label><br />
+    <input id="direccion" class="input" name="direccion" type="text" value="" size="30" placeholder="Escribe aquí tu dirección"/><br />
+  </div>
+  <br>
+  <div class="row">
+    <label class="required" for="telefono"><b>Teléfono:</b></label><br />
+    <input id="telefono" class="input" pattern="\d*" name="telefono" type="text" value="" size="9" placeholder="Teléfono"/><br />
+  </div>
+  <br>
+  <div class="row">
+    <label class="required" for="email"><b>E-mail:</b></label><br />
+    <input id="email" class="input" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" type="text" value="" size="30" placeholder="Escribe aquí tu e-mail"/><br />
+  </div>
+  <br>
+  <div class="row">
+   <h3>Tamaño de la pizza:</h3> 
+    <!--<input id="pequena" class="input" name="tamano" type="radio" value="pequeña">
+    <label for="pequena">Pequeña (1 persona)</label>
+    <input id="mediana" class="input" name="tamano" type="radio" value="mediana">
+    <label for="mediana">Mediana (2 personas)</label>
+    <input id="grande" class="input" name="tamano" type="radio" value="grande">
+    <label for="grande">Grande (3-4 personas)</label>-->
+    cargarDatos()
+      
+    </script>
+  </div>
+  <br>
+  <div class="row">
+    <h3>Ingredientes:</h3>    
+    <!--<input id="bacon" class="input ingredientes" type="checkbox" name="bacon" value="bacon">
+    <label class="required" for="bacon">Bacon</label>
+    <input id="cebolla" class="input ingredientes" type="checkbox" name="cebolla" value="cebolla">
+    <label class="required" for="cebolla">Cebolla</label>    
+    <input id="champinon" class="input ingredientes" type="checkbox" name="champinon" value="champinon">
+    <label class="required" for="champinon">Champiñones</label>
+    <input id="peperoni" class="input ingredientes" type="checkbox" name="peperoni" value="peperoni">
+    <label class="required" for="peperoni">Peperoni</label>-->
+
+  </div> 
+    <br>
+
+    <br>
+    <input id="submit_button" type="submit" value="Realizar pedido" />
+    
+
+</form>
+
+</html>
