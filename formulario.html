@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./dom.js"></script> 
+	<title>Etiquetas</title>
+</head>
+
+<div id="after_submit"></div>
+
+<form id="formulario_pizza" action="#" method="get">
+  <div class="row">
+    <label class="required" for="name"><b>Nombre:</b> </label><br />
+    <input id="nombre" class="input" name="name" type="text" value="" size="30" placeholder="Escribe aquí tu nombre"/><br />
+  </div>
+  <br>
+  <div class="row">
+    <label class="required" for="direccion"><b>Dirección:</b></label><br />
+    <input id="direccion" class="input" name="direccion" type="text" value="" size="30" placeholder="Escribe aquí tu dirección"/><br />
+  </div>
+  <br>
+  <div class="row">
+    <label class="required" for="telefono"><b>Teléfono:</b></label><br />
+    <input id="telefono" class="input" pattern="\d*" name="telefono" type="text" value="" size="9" placeholder="Teléfono"/><br />
+  </div>
+  <br>
+  <div class="row">
+    <label class="required" for="email"><b>E-mail:</b></label><br />
+    <input id="email" class="input" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" type="text" value="" size="30" placeholder="Escribe aquí tu e-mail"/><br />
+  </div>
+  <br>
+  <div id ="tamano" class="row">
+    <button class="btn" id="tamanoPizza" name="tamano" onclick="cargarTamanos()">Cargar tamaños</button>
+  </div>
+  <br>
+  <div id ="ingredientes" class="row">
+    <button class="btn" id="ingredientesPizza" name="ingredientes" onclick="cargarIngredientes()">Cargar ingredientes</button>
+  </div> 
+    <br>
+
+    <br>
+    <input id="submit_button" type="submit" value="Realizar pedido" />
+
+</form>
