@@ -6,7 +6,7 @@
         {"tamaño" : "grande", "precio" : 15}
     ],
 
-    "ingredientes" : [
+    "ingrediente" : [
     {"nombreIngrediente" : "bacon", "precioIngrediente" : 1},
     {"nombreIngrediente": "cebolla", "precioIngrediente": 1}, 
     {"nombreIngrediente" : "champiñon", "precioIngrediente": 1},
