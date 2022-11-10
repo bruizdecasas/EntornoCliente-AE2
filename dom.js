@@ -26,6 +26,34 @@ const RECURSO = "precios.json"
         console.log(objetoJsonTamano)
 
         
+        var arrayIngredientes = objetoJsonTamano.ingredientes;
+        console.log(arrayIngredientes[0].nombreIngrediente) //comprobando que funciona
+        
+        const ingredientesCheckboxFieldset = document.createElement ("FIELDSET");
+        const ingredientesCheckboxLegend = document.createElement("LEGEND");
+        const ingredientesCheckboxLegendText = document.createTextNode("Elige tus ingredientes: ");
+        ingredientesCheckboxLegend.appendChild(ingredientesCheckboxLegendText);
+        ingredientesCheckboxFieldset.appendChild(ingredientesCheckboxLegend);
+
+        for (let i = 0; i < arrayIngredientes.length; i++) {
+
+            const ingredientesCheckbox = document.createElement("input");
+            ingredientesCheckbox.id = arrayIngredientes[i].tamaño;
+            ingredientesCheckbox.name = arrayIngredientes[i].tamaño;
+            ingredientesCheckbox.setAttribute ("type", "checkbox");
+            ingredientesCheckbox.setAttribute ("name", "ingredientes");
+            ingredientesCheckbox.setAttribute ("value", arrayIngredientes[i].nombreIngrediente)
+            ingredientesCheckboxFieldset.appendChild(ingredientesCheckbox);
+
+            const ingredientesLabel = document.createElement("label");
+            const ingredientesLabelText = document.createTextNode(arrayIngredientes[i].nombreIngrediente);
+            ingredientesLabel.setAttribute("for", arrayIngredientes[i].tamaño)
+            ingredientesLabel.appendChild(ingredientesLabelText);
+            ingredientesCheckboxFieldset.appendChild(ingredientesLabel)
+        }
+        
+        ingredientes.appendChild(ingredientesCheckboxFieldset);
+
         var arrayTamaños = objetoJsonTamano.size;
         console.log(arrayTamaños[0].tamaño) //comprobando que funciona
         
@@ -39,7 +67,7 @@ const RECURSO = "precios.json"
 
             const tamañoRadio = document.createElement("input");
             tamañoRadio.id = arrayTamaños[i].tamaño;
-            tamañoRadio.name = (arrayTamaños[i].tamaño);
+            tamañoRadio.name = arrayTamaños[i].tamaño;
             tamañoRadio.setAttribute ("type", "radio");
             tamañoRadio.setAttribute ("name", "tamaño");
             tamañoRadio.setAttribute ("value", arrayTamaños[i].tamaño)
@@ -54,45 +82,5 @@ const RECURSO = "precios.json"
         
         tamano.appendChild(tamañoRadioFieldset);
         document.getElementById("tamanoPizza").remove();
-
-       // tamano.innerHTML = tablaTamano;
        
-    }
-
-    function cargarIngredientes() {
-
-        let xmlHttpIngredientes = new XMLHttpRequest()
-    
-        xmlHttpIngredientes.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                if (this.status == 200) {
-                    procesarRespuestaIngredientes(this.responseText)
-                } else {
-                    alert("Es una trampa!!")
-                }
-            }
-        }
-    
-        xmlHttpIngredientes.open('GET', URL_DESTINO + RECURSO, true)
-        xmlHttpIngredientes.send(null)
-    }
-    
-    function procesarRespuestaIngredientes(jsonDocIngredientes) {
-        var objetoJsonIngredientes = JSON.parse(jsonDocIngredientes)
-        console.log(objetoJsonIngredientes)
-    
-        var tablaIngredientes = "<tr><th>Ingredientes</th><th>Precio</th></tr>";
-        var arrayIngredientes = objetoJsonIngredientes.ingredientes;
-        console.log(arrayIngredientes[0].nombreIngrediente) //comprobando que funciona
-        
-        
-        for (let i = 0; i < arrayIngredientes.length; i++) {
-            tablaIngredientes += "<tr><td>" + arrayIngredientes[i].nombreIngrediente + "</td>" + 
-                "<td>" + arrayIngredientes[i].precioIngrediente + "</td></tr>";
-        }
-    
-    
-        ingredientes.innerHTML = tablaIngredientes;
-    
-        console.log(tablaIngredientes)
     }
