@@ -25,19 +25,36 @@ const RECURSO = "precios.json"
         var objetoJsonTamano = JSON.parse(jsonDocTamano)
         console.log(objetoJsonTamano)
 
-        var tablaTamano = "<tr><th>Tamaño</th><th>Precio</th></tr>";
+        
         var arrayTamaños = objetoJsonTamano.size;
         console.log(arrayTamaños[0].tamaño) //comprobando que funciona
         
-        
-        for (let i = 0; i < arrayTamaños.length; i++) {
-            tablaTamano += "<tr><td>" + arrayTamaños[i].tamaño + "</td>" + 
-                "<td>" + arrayTamaños[i].precio + "</td></tr>";
-        }
+        const tamañoRadioFieldset = document.createElement ("FIELDSET");
+        const tamañoRadioLegend = document.createElement("LEGEND");
+        const tamañoRadioLegendText = document.createTextNode("Elige el tamaño de tu pizza: ");
+        tamañoRadioLegend.appendChild(tamañoRadioLegendText);
+        tamañoRadioFieldset.appendChild(tamañoRadioLegend);
 
-        tamano.innerHTML = tablaTamano;
+        for (let i = 0; i < arrayTamaños.length; i++) {
+
+            const tamañoRadio = document.createElement("input");
+            tamañoRadio.id = arrayTamaños[i].tamaño;
+            tamañoRadio.name = arrayTamaños[i].tamaño;
+            tamañoRadio.setAttribute ("type", "radio");
+            tamañoRadio.setAttribute ("value", arrayTamaños[i].tamaño)
+            tamañoRadioFieldset.appendChild(tamañoRadio);
+
+            const tamañoLabel = document.createElement("label");
+            const tamañoLabelText = document.createTextNode(arrayTamaños[i].tamaño);
+            tamañoLabel.setAttribute("for", arrayTamaños[i].tamaño)
+            tamañoLabel.appendChild(tamañoLabelText);
+            tamañoRadioFieldset.appendChild(tamañoLabel)
+        }
+        
+        tamano.appendChild(tamañoRadioFieldset);
+
+       // tamano.innerHTML = tablaTamano;
        
-        console.log(tablaTamano)
     }
 
     function cargarIngredientes() {
