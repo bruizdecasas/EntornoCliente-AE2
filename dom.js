@@ -39,8 +39,9 @@ const RECURSO = "precios.json"
 
             const tamañoRadio = document.createElement("input");
             tamañoRadio.id = arrayTamaños[i].tamaño;
-            tamañoRadio.name = arrayTamaños[i].tamaño;
+            tamañoRadio.name = (arrayTamaños[i].tamaño);
             tamañoRadio.setAttribute ("type", "radio");
+            tamañoRadio.setAttribute ("name", "tamaño");
             tamañoRadio.setAttribute ("value", arrayTamaños[i].tamaño)
             tamañoRadioFieldset.appendChild(tamañoRadio);
 
@@ -52,6 +53,7 @@ const RECURSO = "precios.json"
         }
         
         tamano.appendChild(tamañoRadioFieldset);
+        document.getElementById("tamanoPizza").remove();
 
        // tamano.innerHTML = tablaTamano;
        
