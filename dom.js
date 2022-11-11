@@ -1,16 +1,16 @@
 console.log("comprobado tamaño");
 
-const URL_DESTINO = "http://localhost:5500/AE2Cliente/"
+const URL_DESTINO = "http://localhost:5500/"
 const RECURSO = "precios.json"
 
-   function cargarTamanos() {
+   function cargarDatos() {
 
         let xmlHttpTamano = new XMLHttpRequest()
 
         xmlHttpTamano.onreadystatechange = function () {
             if (this.readyState == 4) {
                 if (this.status == 200) {
-                    procesarRespuestaTamano(this.responseText)
+                    procesarRespuesta(this.responseText)
                 } else {
                     alert("Es una trampa!!")
                 }
@@ -21,7 +21,7 @@ const RECURSO = "precios.json"
         xmlHttpTamano.send(null)
     }
 
-    function procesarRespuestaTamano(jsonDocTamano) {
+    function procesarRespuesta(jsonDocTamano) {
         var objetoJsonTamano = JSON.parse(jsonDocTamano)
         console.log(objetoJsonTamano)
 
