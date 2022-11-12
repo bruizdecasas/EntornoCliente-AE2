@@ -41,7 +41,7 @@ const RECURSO = "precios.json"
             ingredientesCheckbox.id = arrayIngredientes[i].nombreIngrediente;
             ingredientesCheckbox.name = arrayIngredientes[i].nombreIngrediente;
             ingredientesCheckbox.setAttribute ("type", "checkbox");
-            ingredientesCheckbox.setAttribute ("name", "ingredientes");
+            ingredientesCheckbox.setAttribute ("name", "ingredientesCheckbox");
             ingredientesCheckbox.setAttribute ("value", arrayIngredientes[i].nombreIngrediente)
             ingredientesCheckboxFieldset.appendChild(ingredientesCheckbox);
 
@@ -109,28 +109,31 @@ const RECURSO = "precios.json"
         
 
         var arrayTamaños = objetoJsonPrecio.size;
-        console.log(arrayTamaños[0])
+        //console.log(arrayTamaños[0])
         var arrayIngredientes = objetoJsonPrecio.ingredientes;
-        console.log(arrayIngredientes[3])
+        //console.log(arrayIngredientes[3].precioIngrediente)
 
         var precioPizzaSeleccionado = 0; //Creamos la variable para recoger el valor del for por el tamaño y el for de los ingrediente
+        var precioPizzaTamaño = 0;
+        var precioPizzaIngredientes = 0;
         tamano = document.getElementsByName("tamaño");
 
         for(var i=0; i<tamano.length; i++) {
             if(tamano[i].checked) {
-                precioPizzaSeleccionado=arrayTamaños[i].precio;
+                precioPizzaTamaño=arrayTamaños[i].precio;
                 break;
             }     
         }
+     
+        ingredientesPrecio=document.getElementsByName("ingredientesCheckbox")
         
-        ingredientesPrecio=document.getElementsByClassName("ingredientes")
-        for(var i=0; i<ingredientesPrecio.length; i++){
-            if(ingredientesPrecio[i].checked) {
-                precioPizzaSeleccionado = precioPizzaSeleccionado + arrayIngredientes[i].precioIngrediente; //Incrementamos el precio de la pizza el valor de cada ingrediente seleccionado.
+        for(var j=0; j<ingredientesPrecio.length; j++){
+            if(ingredientesPrecio[j].checked) {
+            precioPizzaIngredientes = precioPizzaIngredientes + arrayIngredientes[j].precioIngrediente;                
             }
         }
 
+        precioPizzaSeleccionado = precioPizzaTamaño + precioPizzaIngredientes; //Incrementamos el precio de la pizza el valor de cada ingrediente seleccionado.
         alert("el precio de tu pizza es " + precioPizzaSeleccionado + "€. Ya va en camino");
-        return precioPizzaSeleccionado; //Devolvemos el precio de la pizza teniendo en cuenta el tamaño y los ingredientes.
-
-    }
+        // return precioPizzaSeleccionado; //Devolvemos el precio de la pizza teniendo en cuenta el tamaño y los ingredientes.
+        }
