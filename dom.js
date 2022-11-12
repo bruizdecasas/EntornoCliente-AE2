@@ -1,16 +1,17 @@
 console.log("comprobado tamaño");
 
-const URL_DESTINO = "http://localhost:5500/"
+const URL_DESTINO = "http://localhost:5500/AE2Cliente/"
 const RECURSO = "precios.json"
 
-   function cargarDatos() {
+   function cargarTamanos() {
 
         let xmlHttpTamano = new XMLHttpRequest()
 
         xmlHttpTamano.onreadystatechange = function () {
             if (this.readyState == 4) {
                 if (this.status == 200) {
-                    procesarRespuesta(this.responseText)
+                    procesarRespuestaTamano(this.responseText)
+                    procesarPrecio(this.responseText)
                 } else {
                     alert("Es una trampa!!")
                 }
@@ -21,7 +22,7 @@ const RECURSO = "precios.json"
         xmlHttpTamano.send(null)
     }
 
-    function procesarRespuesta(jsonDocTamano) {
+    function procesarRespuestaTamano(jsonDocTamano) {
         var objetoJsonTamano = JSON.parse(jsonDocTamano)
         console.log(objetoJsonTamano)
 
@@ -38,8 +39,8 @@ const RECURSO = "precios.json"
         for (let i = 0; i < arrayIngredientes.length; i++) {
 
             const ingredientesCheckbox = document.createElement("input");
-            ingredientesCheckbox.id = arrayIngredientes[i].tamaño;
-            ingredientesCheckbox.name = arrayIngredientes[i].tamaño;
+            ingredientesCheckbox.id = arrayIngredientes[i].nombreIngrediente;
+            ingredientesCheckbox.name = arrayIngredientes[i].nombreIngrediente;
             ingredientesCheckbox.setAttribute ("type", "checkbox");
             ingredientesCheckbox.setAttribute ("name", "ingredientes");
             ingredientesCheckbox.setAttribute ("value", arrayIngredientes[i].nombreIngrediente)
@@ -47,7 +48,7 @@ const RECURSO = "precios.json"
 
             const ingredientesLabel = document.createElement("label");
             const ingredientesLabelText = document.createTextNode(arrayIngredientes[i].nombreIngrediente);
-            ingredientesLabel.setAttribute("for", arrayIngredientes[i].tamaño)
+            ingredientesLabel.setAttribute("for", arrayIngredientes[i].nombreIngrediente)
             ingredientesLabel.appendChild(ingredientesLabelText);
             ingredientesCheckboxFieldset.appendChild(ingredientesLabel)
         }
@@ -83,4 +84,38 @@ const RECURSO = "precios.json"
         tamano.appendChild(tamañoRadioFieldset);
         document.getElementById("tamanoPizza").remove();
        
+    }
+
+    function procesarPrecio (jsonDocTamano) {
+
+        var objetoJsonTamano = JSON.parse(jsonDocTamano)
+        
+
+        var arrayTamaños = objetoJsonTamano.size;
+        console.log(arrayTamaños[0])
+        var arrayIngredientes = objetoJsonTamano.ingredientes;
+        console.log(arrayIngredientes[3])
+
+        var precioPizzaSeleccionado = 0; //Creamos la variable para recoger el valor del for por el tamaño y el for de los ingrediente
+        tamano = document.getElementsByName("tamaño");
+
+        console.log (tamano)
+
+        for(var i=0; i<tamano.length; i++) {
+            if(tamano[i].checked) {
+                precioPizzaSeleccionado=arrayTamaños[i].precio;
+                break;
+            }     
+        }
+        ingredientes=document.getElementsByClassName("ingredientes")
+        for(var i=0; i<ingredientes.length; i++){
+            if(ingredientes[i].checked) {
+                precioPizzaSeleccionado+=arrayIngredientes[i].precioIngrediente; //Incrementamos el precio de la pizza el valor de cada ingrediente seleccionado.
+            }
+        }
+
+        alert("el precio de tu pizza es " + precioPizzaSeleccionado+ "€. Ya va en camino");
+       return precioPizzaSeleccionado; //Devolvemos el precio de la pizza teniendo en cuenta el tamaño y los ingredientes.
+        //alert("el precio de tu pizza es " + precioPizzaSeleccionado+ "€. Ya va en camino");
+
     }
