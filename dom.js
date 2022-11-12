@@ -11,7 +11,6 @@ const RECURSO = "precios.json"
             if (this.readyState == 4) {
                 if (this.status == 200) {
                     procesarRespuestaTamano(this.responseText)
-                    procesarPrecio(this.responseText)
                 } else {
                     alert("Es una trampa!!")
                 }
@@ -86,20 +85,36 @@ const RECURSO = "precios.json"
        
     }
 
-    function procesarPrecio (jsonDocTamano) {
+    function calcularPrecio() {
 
-        var objetoJsonTamano = JSON.parse(jsonDocTamano)
+        let xmlHttpTamano = new XMLHttpRequest()
+
+        xmlHttpTamano.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    procesarPrecio(this.responseText)
+                } else {
+                    alert("Es una trampa!!")
+                }
+            }
+        }
+
+        xmlHttpTamano.open('GET', URL_DESTINO + RECURSO, true)
+        xmlHttpTamano.send(null)
+    }
+    
+    function procesarPrecio (jsonDocPrecio) {
+
+        var objetoJsonPrecio = JSON.parse(jsonDocPrecio)
         
 
-        var arrayTamaños = objetoJsonTamano.size;
+        var arrayTamaños = objetoJsonPrecio.size;
         console.log(arrayTamaños[0])
-        var arrayIngredientes = objetoJsonTamano.ingredientes;
+        var arrayIngredientes = objetoJsonPrecio.ingredientes;
         console.log(arrayIngredientes[3])
 
         var precioPizzaSeleccionado = 0; //Creamos la variable para recoger el valor del for por el tamaño y el for de los ingrediente
         tamano = document.getElementsByName("tamaño");
-
-        console.log (tamano)
 
         for(var i=0; i<tamano.length; i++) {
             if(tamano[i].checked) {
@@ -107,15 +122,15 @@ const RECURSO = "precios.json"
                 break;
             }     
         }
-        ingredientes=document.getElementsByClassName("ingredientes")
-        for(var i=0; i<ingredientes.length; i++){
-            if(ingredientes[i].checked) {
-                precioPizzaSeleccionado+=arrayIngredientes[i].precioIngrediente; //Incrementamos el precio de la pizza el valor de cada ingrediente seleccionado.
+        
+        ingredientesPrecio=document.getElementsByClassName("ingredientes")
+        for(var i=0; i<ingredientesPrecio.length; i++){
+            if(ingredientesPrecio[i].checked) {
+                precioPizzaSeleccionado = precioPizzaSeleccionado + arrayIngredientes[i].precioIngrediente; //Incrementamos el precio de la pizza el valor de cada ingrediente seleccionado.
             }
         }
 
-        alert("el precio de tu pizza es " + precioPizzaSeleccionado+ "€. Ya va en camino");
-       return precioPizzaSeleccionado; //Devolvemos el precio de la pizza teniendo en cuenta el tamaño y los ingredientes.
-        //alert("el precio de tu pizza es " + precioPizzaSeleccionado+ "€. Ya va en camino");
+        alert("el precio de tu pizza es " + precioPizzaSeleccionado + "€. Ya va en camino");
+        return precioPizzaSeleccionado; //Devolvemos el precio de la pizza teniendo en cuenta el tamaño y los ingredientes.
 
     }
