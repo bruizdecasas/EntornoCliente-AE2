@@ -10,7 +10,7 @@
     {"nombreIngrediente" : "bacon", "precioIngrediente" : 1},
     {"nombreIngrediente": "cebolla", "precioIngrediente": 1}, 
     {"nombreIngrediente" : "champiñon", "precioIngrediente": 1},
-    {"nombreIngrediente" : "peperoni", "precioIngrediente" : 1}
+    {"nombreIngrediente" : "peperoni", "precioIngrediente" : 2}
 
     ]
 }
