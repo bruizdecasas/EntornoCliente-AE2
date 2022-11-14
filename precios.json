@@ -1,16 +1,34 @@
 {
-    "size" : [
-    
-        {"tamaño" : "pequeña", "precio" : 5},
-        {"tamaño" : "mediana", "precio":10},
-        {"tamaño" : "grande", "precio" : 15}
+    "size": [
+        {
+            "tamaño": "pequeña",
+            "precio": 5
+        },
+        {
+            "tamaño": "mediana",
+            "precio": 10
+        },
+        {
+            "tamaño": "grande",
+            "precio": 15
+        }
     ],
-
-    "ingredientes" : [
-    {"nombreIngrediente" : "bacon", "precioIngrediente" : 1},
-    {"nombreIngrediente": "cebolla", "precioIngrediente": 1}, 
-    {"nombreIngrediente" : "champiñon", "precioIngrediente": 1},
-    {"nombreIngrediente" : "peperoni", "precioIngrediente" : 2}
-
+    "ingredientes": [
+        {
+            "nombreIngrediente": "bacon",
+            "precioIngrediente": 1
+        },
+        {
+            "nombreIngrediente": "cebolla",
+            "precioIngrediente": 1
+        },
+        {
+            "nombreIngrediente": "champiñon",
+            "precioIngrediente": 1
+        },
+        {
+            "nombreIngrediente": "peperoni",
+            "precioIngrediente": 2
+        }
     ]
 }
