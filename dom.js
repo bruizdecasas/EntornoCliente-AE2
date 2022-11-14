@@ -1,16 +1,14 @@
 const URL_DESTINO = "http://localhost:5500/"
 const RECURSO = "precios.json"
 
-
-function cargarDatos() {
+function llamadaHttp(funcion) {
     // Nos ayudaremos de esta función para traernos lo datos que tenemos guardados en nuestro JSON. 
-
     let xmlHttpTamano = new XMLHttpRequest()
 
     xmlHttpTamano.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) {
-                procesarRespuesta(this.responseText)
+                funcion(this.responseText)
             } else {
                 alert("Es una trampa!!")
             }
@@ -19,11 +17,17 @@ function cargarDatos() {
 
     xmlHttpTamano.open('GET', URL_DESTINO + RECURSO, true)
     xmlHttpTamano.send(null)
+
+}
+
+function cargarDatos() {
+    llamadaHttp(procesarRespuesta)
 }
 
 function refrescar() {
     cargarDatos();
 }
+
 
 function procesarRespuesta(jsonDocTamano) {
     // Dentro de esta función construiremos el DOM. Primero parseando las datos recibidos para poderlos manejar. 
@@ -38,6 +42,7 @@ function procesarRespuesta(jsonDocTamano) {
     ingredientesCheckboxLegend.appendChild(ingredientesCheckboxLegendText);
     ingredientesCheckboxFieldset.appendChild(ingredientesCheckboxLegend);
 
+    // Aqui iteramos en el array de ingredientes, y contruimos el DOM gracias a un for
     for (let i = 0; i < arrayIngredientes.length; i++) {
         const ingredientesCheckbox = document.createElement("input");
         ingredientesCheckbox.id = arrayIngredientes[i].nombreIngrediente;
@@ -65,6 +70,7 @@ function procesarRespuesta(jsonDocTamano) {
     tamañoRadioLegend.appendChild(tamañoRadioLegendText);
     tamañoRadioFieldset.appendChild(tamañoRadioLegend);
 
+    // Aqui iteramos en el array de size, y contruimos el DOM gracias a un for
     for (let i = 0; i < arrayTamaños.length; i++) {
         const tamañoRadio = document.createElement("input");
         tamañoRadio.id = arrayTamaños[i].tamaño;
@@ -84,32 +90,21 @@ function procesarRespuesta(jsonDocTamano) {
     tamano.appendChild(tamañoRadioFieldset);
 
     if (!!document.getElementById("tamanoPizza")) {
-        document.getElementById("tamanoPizza").remove();
+        document.getElementById("tamanoPizza").remove(); // Solo se elimina el botón de cargar, la primera vez, después ya no existe. 
     } else {
         document.getElementById("tamanoFieldset").remove();
-        document.getElementById("ingredientesFieldset").remove();
+        document.getElementById("ingredientesFieldset").remove(); // Eliminamos los anteriores parrafos de tamaño e ingredientes, para que no se dubliquen una vez clickamos en refrescar. 
     }
 
 
 }
 
 function calcularPrecio() {
-    let xmlHttpTamano = new XMLHttpRequest()
-
-    xmlHttpTamano.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                procesarPrecio(this.responseText)
-            } else {
-                alert("Es una trampa!!")
-            }
-        }
-    }
-    xmlHttpTamano.open('GET', URL_DESTINO + RECURSO, true)
-    xmlHttpTamano.send(null)
+    llamadaHttp(procesarPrecio)
 }
 
 function procesarPrecio(jsonDocPrecio) {
+    // Dentro de esta función calcularemos el precios del pedido, y además saldrá una alerta con el precio total a pagar. 
     var objetoJsonPrecio = JSON.parse(jsonDocPrecio)
     var arrayTamaños = objetoJsonPrecio.size;
     var arrayIngredientes = objetoJsonPrecio.ingredientes;
