@@ -100,6 +100,7 @@ function procesarRespuesta(jsonDocTamano) {
 }
 
 function calcularPrecio() {
+    // Nos traemos los datos de los precios, para calcular el precio de la pizza.
     llamadaHttp(procesarPrecio)
 }
 
